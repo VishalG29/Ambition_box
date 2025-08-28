@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Results - Ambition Box</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-chart-bar me-2"></i>Ambition Box Analysis
+            </a>
+            <a class="btn btn-light" href="/">
+                <i class="fas fa-arrow-left me-2"></i>New Analysis
+            </a>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        {% if error %}
+        <div class="alert alert-warning text-center" role="alert">
+            <i class="fas fa-exclamation-triangle me-2"></i>{{ error }}
+            <div class="mt-3">
+                <a href="/" class="btn btn-primary">Try Different Filters</a>
+            </div>
+        </div>
+        {% else %}
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="alert alert-success" role="alert">
+                    <i class="fas fa-check-circle me-2"></i>
+                    Found <strong>{{ data_count }}</strong> companies matching your criteria
+                </div>
+            </div>
+        </div>
+
+        {% if view_type == 'table' %}
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-table me-2"></i>Company Data Table
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            {{ table_html|safe }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% elif view_type == 'visualizations' %}
+        <div class="row">
+            <div class="col-12 mb-4">
+                <h2 class="text-center">
+                    <i class="fas fa-chart-line me-2"></i>Interactive Dashboard
+                </h2>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            {% for graph in graphs %}
+            <div class="col-lg-6">
+                <div class="card h-100">
+                    <div class="card-body p-2">
+                        <div id="chart{{ loop.index }}" class="plotly-chart"></div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <script>
+            {% for graph in graphs %}
+            var graphData{{ loop.index }} = {{ graph|safe }};
+            Plotly.newPlot('chart{{ loop.index }}', graphData{{ loop.index }}.data, graphData{{ loop.index }}.layout, {
+                responsive: true,
+                displayModeBar: true,
+                modeBarButtonsToRemove: ['pan2d', 'lasso2d', 'select2d'],
+                toImageButtonOptions: {
+                    format: 'png',
+                    filename: 'chart{{ loop.index }}',
+                    height: 500,
+                    width: 700,
+                    scale: 1
+                }
+            });
+            {% endfor %}
+        </script>
+        {% endif %}
+        {% endif %}
+
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+                <a href="/" class="btn btn-primary btn-lg">
+                    <i class="fas fa-search me-2"></i>Run New Analysis
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-light mt-5 py-4">
+        <div class="container text-center text-muted">
+            <p class="mb-0">
+                <i class="fas fa-chart-bar me-2"></i>Ambition Box Job Analysis Dashboard
+                <br>
+                <small>Built with Flask, Plotly, and Bootstrap</small>
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

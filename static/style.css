@@ -1,0 +1,243 @@
+/* Custom styles for Ambition Box Job Analysis */
+
+:root {
+    --primary-color: #0d6efd;
+    --secondary-color: #6c757d;
+    --success-color: #198754;
+    --info-color: #0dcaf0;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --light-color: #f8f9fa;
+    --dark-color: #212529;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.main-content {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 3rem;
+    margin: 2rem auto;
+    max-width: 800px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.form-container {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.form-label {
+    font-weight: 600;
+    color: var(--dark-color);
+    margin-bottom: 0.5rem;
+}
+
+.form-select, .form-control {
+    border-radius: 10px;
+    border: 2px solid #e9ecef;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.form-select:focus, .form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.form-check-card {
+    margin-bottom: 1rem;
+}
+
+.form-check-card .form-check-input {
+    display: none;
+}
+
+.form-check-card .card {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid #dee2e6;
+}
+
+.form-check-card .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.form-check-card input:checked + label .card {
+    border-color: var(--primary-color) !important;
+    background-color: rgba(13, 110, 253, 0.05) !important;
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(45deg, #5a6fd8, #6a4190);
+}
+
+.display-4 {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800;
+}
+
+/* Results page styles */
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.card {
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    border-radius: 15px 15px 0 0 !important;
+    border: none;
+    font-weight: 600;
+}
+
+.table {
+    font-size: 0.9rem;
+}
+
+.table th {
+    background: var(--light-color);
+    font-weight: 600;
+    border-top: none;
+    color: var(--dark-color);
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(13, 110, 253, 0.03);
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(13, 110, 253, 0.08);
+}
+
+.alert {
+    border-radius: 10px;
+    border: none;
+    font-weight: 500;
+}
+
+.alert-success {
+    background: linear-gradient(45deg, rgba(25, 135, 84, 0.1), rgba(25, 135, 84, 0.05));
+    color: var(--success-color);
+    border-left: 4px solid var(--success-color);
+}
+
+.alert-warning {
+    background: linear-gradient(45deg, rgba(255, 193, 7, 0.1), rgba(255, 193, 7, 0.05));
+    color: #856404;
+    border-left: 4px solid var(--warning-color);
+}
+
+.plotly-chart {
+    min-height: 400px;
+}
+
+footer {
+    margin-top: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .main-content {
+        margin: 1rem;
+        padding: 2rem 1.5rem;
+        border-radius: 15px;
+    }
+    
+    .form-container {
+        padding: 1.5rem;
+    }
+    
+    .display-4 {
+        font-size: 2rem;
+    }
+    
+    .plotly-chart {
+        min-height: 300px;
+    }
+}
+
+/* Loading animation */
+.btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn-primary.loading::after {
+    content: '';
+    width: 16px;
+    height: 16px;
+    margin-left: 8px;
+    border: 2px solid transparent;
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spin 1s ease infinite;
+    display: inline-block;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #5a6fd8, #6a4190);
+}
